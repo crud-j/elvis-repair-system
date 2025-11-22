@@ -1,57 +1,44 @@
 <?php
 /**
- * api/index.php - Dynamic Forwarder for Vercel PHP (based on vercel-community/php examples)
- * Routes all requests to correct PHP files while preventing downloads.
+ * api/index.php - Universal Vercel Forwarder (based on vercel-community/php)
+ * Dynamically includes any PHP file based on REQUEST_URI, prevents 404s/downloads.
  */
 
-// Prevent downloads: Set HTML header FIRST
+// Set HTML header (prevents downloads)
 if (!headers_sent()) {
     header('Content-Type: text/html; charset=utf-8');
 }
 
-// Include config for DB, sessions, CSRF (from api/)
+// Include config for DB, sessions, CSRF
 require __DIR__ . '/config.php';
 
-// Dynamic routing: Map URL to file path
+// Get the requested path (e.g., /Frontend/auth/login.php)
 $request_uri = $_SERVER['REQUEST_URI'] ?? '/';
-$path_info = parse_url($request_uri, PHP_URL_PATH);
-$file_path = null;
+$path_info = parse_url($request_uri, PHP_URL_PATH);  // Clean path without query params
 
-// Homepage
+// Handle root/homepage
 if ($path_info === '/' || $path_info === '/index.php') {
-    $file_path = __DIR__ . '/../index.php';
-}
-// Auth pages (e.g., /login.php → Frontend/auth/login.php)
-elseif (preg_match('/^\/(login|register|forgot_password|reset_password|verify)\.php$/', $path_info, $matches)) {
-    $file_name = $matches[1] . '.php';
-    $file_path = __DIR__ . '/../Frontend/auth/' . $file_name;
-}
-// Backend handlers (e.g., /booking-handler.php → Backend/booking-handler.php)
-elseif (preg_match('/^\/(booking-handler|contact-handler|forgot_password_handler|get-availability|logout|reset_password_handler|seed_services)\.php$/', $path_info, $matches)) {
-    $file_name = $matches[1] . '.php';
-    $file_path = __DIR__ . '/../Backend/' . $file_name;
-}
-// Dashboards (e.g., /admindashboard.php → Frontend/admindash-frontend/admindashboard.php)
-elseif (preg_match('/^\/(admindashboard|customerdashboard)\.php$/', $path_info, $matches)) {
-    $dash_type = str_replace('dashboard', 'dash-', $matches[1]);
-    $file_path = __DIR__ . '/../Frontend/' . $dash_type . '-frontend/' . $matches[1] . '.php';
-}
-// Backend dashboard handlers (e.g., /admin-backend.php → Backend/admindash-backend/admin-backend.php)
-elseif (preg_match('/^\/(admin|customer)-backend\.php$/', $path_info, $matches)) {
-    $type = $matches[1];
-    $file_path = __DIR__ . '/../Backend/' . $type . 'dash-backend/' . $type . '-backend.php';
-}
-// Fallback: 404 if no match
-else {
-    http_response_code(404);
-    echo '<h1>404 - Page Not Found</h1>';
+    require __DIR__ . '/../index.php';
     return;
 }
 
-// Include the target file if it exists
-if ($file_path && file_exists($file_path)) {
-    require $file_path;
-} else {
+// Build relative file path (e.g., /Frontend/auth/login.php → ../Frontend/auth/login.php)
+$relative_path = ltrim($path_info, '/');  // Remove leading /
+$file_path = __DIR__ . '/../' . $relative_path;
+
+// Security: Resolve and validate path (prevents directory traversal)
+$file_path = realpath($file_path);
+$project_root = realpath(__DIR__ . '/..');  // Project root
+
+if (
+    $file_path === false ||  // Doesn't exist
+    strpos($file_path, $project_root) !== 0 ||  // Outside project root (security)
+    pathinfo($file_path, PATHINFO_EXTENSION) !== 'php'  // Not a PHP file
+) {
     http_response_code(404);
-    echo '<h1>404 - File Not Found</h1>';
+    echo '<!DOCTYPE html><html><head><title>404 - Page Not Found</title></head><body><h1>404 - Page Not Found</h1><p>The requested resource was not found.</p></body></html>';
+    return;
 }
+
+// Include and execute the PHP file
+require $file_path;
