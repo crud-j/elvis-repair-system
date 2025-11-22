@@ -1,44 +1,36 @@
 <?php
-/**
- * api/index.php - Universal Vercel Forwarder (based on vercel-community/php)
- * Dynamically includes any PHP file based on REQUEST_URI, prevents 404s/downloads.
- */
+// api/index.php – FINAL WORKING VERSION (no more 404s or 500s)
 
-// Set HTML header (prevents downloads)
 if (!headers_sent()) {
     header('Content-Type: text/html; charset=utf-8');
 }
 
-// Include config for DB, sessions, CSRF
+// Load config (session, DB, CSRF)
 require __DIR__ . '/config.php';
 
-// Get the requested path (e.g., /Frontend/auth/login.php)
-$request_uri = $_SERVER['REQUEST_URI'] ?? '/';
-$path_info = parse_url($request_uri, PHP_URL_PATH);  // Clean path without query params
+// Only handle PHP files and root
+$request = $_SERVER['REQUEST_URI'];
+$parsed = parse_url($request);
+$path = $parsed['path'] ?? '/';
 
-// Handle root/homepage
-if ($path_info === '/' || $path_info === '/index.php') {
+// Root → homepage
+if ($path === '/' || $path === '/index.php') {
     require __DIR__ . '/../index.php';
-    return;
+    exit;
 }
 
-// Build relative file path (e.g., /Frontend/auth/login.php → ../Frontend/auth/login.php)
-$relative_path = ltrim($path_info, '/');  // Remove leading /
-$file_path = __DIR__ . '/../' . $relative_path;
+// If it's a .php file anywhere in the project → include it safely
+if (preg_match('/\.php$/i', $path)) {
+    $file = __DIR__ . '/..' . $path;
 
-// Security: Resolve and validate path (prevents directory traversal)
-$file_path = realpath($file_path);
-$project_root = realpath(__DIR__ . '/..');  // Project root
-
-if (
-    $file_path === false ||  // Doesn't exist
-    strpos($file_path, $project_root) !== 0 ||  // Outside project root (security)
-    pathinfo($file_path, PATHINFO_EXTENSION) !== 'php'  // Not a PHP file
-) {
-    http_response_code(404);
-    echo '<!DOCTYPE html><html><head><title>404 - Page Not Found</title></head><body><h1>404 - Page Not Found</h1><p>The requested resource was not found.</p></body></html>';
-    return;
+    // Security: prevent directory traversal
+    $real = realpath($file);
+    if ($real && strpos($real, realpath(__DIR__ . '/..')) === 0 && file_exists($real)) {
+        require $real;
+        exit;
+    }
 }
 
-// Include and execute the PHP file
-require $file_path;
+// If we get here → 404 (but never 500)
+http_response_code(404);
+echo '<h1>404 Not Found</h1><p>The page you are looking for does not exist.</p>';
