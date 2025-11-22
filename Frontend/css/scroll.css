@@ -1,0 +1,42 @@
+  @layer base {
+      :root, html {
+        --background: #f8fafc;
+        --text-primary: #1f2937;
+        --text-muted: #6b7280;
+        --card-bg: rgba(255, 255, 255, 0.6);
+        --card-border: rgba(0, 0, 0, 0.1);
+        --sidebar-bg: rgba(255, 255, 255, 0.4);
+      }
+    }
+
+    /* Custom Scrollbar - Webkit (Chrome, Safari, Edge) */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+      border-radius: 3px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(156, 163, 175, 0.4); /* gray-400/40 */
+      border-radius: 3px;
+      transition: background 0.2s ease;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(156, 163, 175, 0.7);
+    }
+
+    /* Smooth scroll behavior globally for this container */
+    .custom-scrollbar {
+      scroll-behavior: smooth;
+      scrollbar-color: rgba(156, 163, 175, 0.4) transparent;
+      scrollbar-width: thin;
+    }
+
+    /* Dark mode adjustments */
+    .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(107, 114, 128, 0.5); /* gray-500/50 */
+    }
+    .dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(107, 114, 128, 0.8);
+    }
