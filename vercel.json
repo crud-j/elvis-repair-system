@@ -1,34 +1,23 @@
 {
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/**/*.php",
+      "use": "vercel-php@0.7.4"
+    },
+    {
+      "src": "assets/**",
+      "use": "@vercel/static"
+    }
+  ],
   "functions": {
-    "api/**/*.php": { "runtime": "vercel-php@0.7.4" },
-    "*.php": { "runtime": "vercel-php@0.7.4" },
-    "Frontend/auth/*.php": { "runtime": "vercel-php@0.7.4" }
+    "api/**/*.php": {
+      "runtime": "vercel-php@0.7.4"
+    }
   },
   "routes": [
-    { "src": "/assets/(.*)", "dest": "/assets/$1" },
-    { "src": "/img/(.*)", "dest": "/img/$1" },
-    { "src": "/uploads/(.*)", "dest": "/uploads/$1" },
-    { "src": "/script/(.*)", "dest": "/script/$1" },
-
-    { "src": "/Frontend/(.*)", "dest": "/Frontend/$1" },
-    { "src": "/Backend/(.*)", "dest": "/Backend/$1" },
-
-    { "src": "/admindash-frontend/(.*)", "dest": "/admindash-frontend/$1" },
-    { "src": "/customerdash-frontend/(.*)", "dest": "/customerdash-frontend/$1" },
-    { "src": "/admindash-backend/(.*)", "dest": "/admindash-backend/$1" },
-    { "src": "/customerdash-backend/(.*)", "dest": "/customerdash-backend/$1" },
-
-    { "src": "/Frontend/auth/login.php", "dest": "/Frontend/auth/login.php" },
-    { "src": "/Frontend/auth/register.php", "dest": "/Frontend/auth/register.php" },
-
-    { "src": "/login.php", "dest": "/login.php" },
-    { "src": "/register.php", "dest": "/register.php" },
-    { "src": "/forgot_password.php", "dest": "/forgot_password.php" },
-    { "src": "/reset_password.php", "dest": "/reset_password.php" },
-    { "src": "/verify.php", "dest": "/verify.php" },
-
-    { "src": "/api/(.*)", "dest": "/api/$1" },
-
+    { "handle": "filesystem" },
+    { "src": "/(.*)\\.php", "dest": "/api/$1.php" },
     { "src": "/(.*)", "dest": "/api/index.php" }
   ]
 }
