@@ -5,8 +5,8 @@
 header('Content-Type: application/json');
 
 // Include the database configuration from the parent directory
-// We use __DIR__ . '/../config.php' because config.php is one folder up
-require __DIR__ . '/../config.php';
+// We use __DIR__ . '/config.php' because config.php is in the same folder
+require __DIR__ . '/config.php';
 
 $response = [];
 

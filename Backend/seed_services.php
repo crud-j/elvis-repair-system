@@ -1,5 +1,5 @@
 php<?php
-require_once 'config.php';
+require_once '/../api/config.php';
 
 echo "<pre>";
 

@@ -1,5 +1,5 @@
 <?php
-require_once '../../Backend/config.php';
+require_once '/../api/config.php';
 require_once '../../vendor/phpmailer/phpmailer/src/Exception.php';
 require_once '../../vendor/phpmailer/phpmailer/src/PHPMailer.php';
 require_once '../../vendor/phpmailer/phpmailer/src/SMTP.php';

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../../Backend/config.php';
+require_once '/../api/config.php';
 require_once '../../vendor/autoload.php'; // PHPMailer autoloader
 
 use PHPMailer\PHPMailer\PHPMailer;

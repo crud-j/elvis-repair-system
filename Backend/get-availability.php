@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-require_once 'config.php';
+require_once '/../api/config.php';
 
 // This endpoint is public and does not require login.
 

@@ -1,5 +1,5 @@
 <?php
-require_once '../../Backend/config.php';
+require_once '/../api/config.php';
 
 $message = '';
 $error = '';

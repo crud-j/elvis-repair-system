@@ -1,5 +1,6 @@
 <?php
-require_once 'Backend/config.php'; // This will start the session
+require_once __DIR__ . '/../api/config.php';
+ // This will start the session
 ?>
 <!DOCTYPE html>
 <html lang="en">

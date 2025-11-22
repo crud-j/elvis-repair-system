@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php'; // Includes session_start()
+require_once '/../api/config.php'; // Includes session_start()
 
 // Import PHPMailer classes into the global namespace
 use PHPMailer\PHPMailer\PHPMailer;

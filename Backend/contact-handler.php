@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php'; // This includes session_start() and the PDO connection
+require_once '/../api/config.php'; // This includes session_start() and the PDO connection
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verify CSRF token
