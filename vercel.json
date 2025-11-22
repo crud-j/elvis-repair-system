@@ -1,7 +1,7 @@
 {
   "functions": {
-    "api/**/*.php": { "runtime": "vercel-php@0.7.4" },
-    "index.php": { "runtime": "vercel-php@0.7.4" }
+    "api/index.php": { "runtime": "vercel-php@0.7.4" },
+    "api/**/*.php": { "runtime": "vercel-php@0.7.4" }
   },
   "routes": [
     { "src": "/assets/(.*)", "dest": "/assets/$1" },
@@ -9,6 +9,6 @@
     { "src": "/Frontend/(.*)", "dest": "/Frontend/$1" },
     { "src": "/Backend/(.*)", "dest": "/Backend/$1" },
     { "src": "/api/(.*)", "dest": "/api/$1" },
-    { "src": "/(.*)", "dest": "/index.php" }
+    { "src": "/(.*)", "dest": "/api/index.php" }
   ]
 }
