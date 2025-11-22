@@ -18,16 +18,12 @@
       "dest": "/Frontend/$1"
     },
     {
-      "src": "/((?!api/.*).*.php)",
-      "dest": "/api/index.php"
-    },
-    {
       "src": "/api/(.*)",
       "dest": "/api/$1"
     },
     {
-      "src": "/(.*)",
-      "dest": "/api/index.php"
+      "src": "/(.*\\.php)",
+      "dest": "/api/index.php?page=$1"
     }
   ],
   "env": {
