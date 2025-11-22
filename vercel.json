@@ -1,38 +1,37 @@
 {
-    "version": 2,
-    "functions": {
-        "api/**/*.php": {
-            "runtime": "vercel-php@0.7.0"
-        }
-    },
-    "routes": [
-        {
-            "src": "/assets/(.*)",
-            "dest": "/assets/$1"
-        },
-        {
-            "src": "/uploads/(.*)",
-            "dest": "/uploads/$1"
-        },
-        {
-            "src": "/Frontend/(.*)",
-            "dest": "/Frontend/$1"
-        },
-        {
-            "src": "/((?!api/.*).*.php)",
-            "dest": "/api/index.php"
-        },
-        {
-            "src": "/api/(.*)",
-            "dest": "/api/$1"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "/api/index.php"
-        }
-    ],
-    "env": {
-        "APP_ENV": "production",
-        "VERCEL": "1"
+  "functions": {
+    "api/**/*.php": {
+      "runtime": "vercel-php@0.7.4"
     }
+  },
+  "routes": [
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/uploads/(.*)",
+      "dest": "/uploads/$1"
+    },
+    {
+      "src": "/Frontend/(.*)",
+      "dest": "/Frontend/$1"
+    },
+    {
+      "src": "/((?!api/.*).*.php)",
+      "dest": "/api/index.php"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.php"
+    }
+  ],
+  "env": {
+    "APP_ENV": "production",
+    "VERCEL": "1"
+  }
 }
