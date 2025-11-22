@@ -1,7 +1,8 @@
 {
   "functions": {
-    "api/index.php": { "runtime": "vercel-php@0.7.4" },
-    "api/**/*.php": { "runtime": "vercel-php@0.7.4" }
+    "api/**/*.php": { "runtime": "vercel-php@0.7.4" },
+    "*.php": { "runtime": "vercel-php@0.7.4" },
+    "Frontend/auth/*.php": { "runtime": "vercel-php@0.7.4" }
   },
   "routes": [
     { "src": "/assets/(.*)", "dest": "/assets/$1" },
@@ -16,6 +17,9 @@
     { "src": "/customerdash-frontend/(.*)", "dest": "/customerdash-frontend/$1" },
     { "src": "/admindash-backend/(.*)", "dest": "/admindash-backend/$1" },
     { "src": "/customerdash-backend/(.*)", "dest": "/customerdash-backend/$1" },
+
+    { "src": "/Frontend/auth/login.php", "dest": "/Frontend/auth/login.php" },
+    { "src": "/Frontend/auth/register.php", "dest": "/Frontend/auth/register.php" },
 
     { "src": "/login.php", "dest": "/login.php" },
     { "src": "/register.php", "dest": "/register.php" },
