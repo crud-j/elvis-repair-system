@@ -59,11 +59,11 @@ define('DB_SERVER', getenv('DB_HOST') ?: 'elvis-repair-db-aiuseonly404-317b.k.ai
 define('DB_USERNAME', getenv('DB_USER') ?: 'avnadmin');
 define('DB_PASSWORD', getenv('DB_PASSWORD') ?: '');
 define('DB_NAME', getenv('DB_NAME') ?: 'defaultdb');
-define('DB_PORT', getenv('DB_PORT') ?: '22996'); // Aiven uses a custom port (e.g., 20696)
+define('DB_PORT', getenv('DB_PORT') ?: '22996') ; // Aiven uses a custom port (e.g., 20696)
 
 // SSL Certificate Path (Required for Aiven)
-// Ensure you upload 'ca.pem' to the same folder as this config.php file
-$ssl_ca = __DIR__ . '/ca.pem'; 
+// Ensure you upload 'ca.pem' to the project's root directory
+$ssl_ca = __DIR__ . '/../ca.pem'; 
 
 // Check if we are on Vercel (Production) or Local
 // If the CA file exists, we assume we need to use SSL (Aiven)

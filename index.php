@@ -177,12 +177,12 @@ require_once __DIR__ . '/api/config.php';
             <span class="material-symbols-outlined">arrow_drop_down</span>
           </button>
           <div id="user-dropdown-menu" class="hidden absolute right-0 mt-2 w-56 rounded-xl glass-card border border-glass-border shadow-lg py-2 z-50">
-            <a href="Frontend/customerdash-frontend/customerdashboard.php" class="flex items-center gap-3 px-4 py-2 text-sm text-pistachio hover:bg-dark-green transition">
+            <a href="/Frontend/customerdash-frontend/customerdashboard.php" class="flex items-center gap-3 px-4 py-2 text-sm text-pistachio hover:bg-dark-green transition">
               <span class="material-symbols-outlined">dashboard</span>
               <span>Go to Dashboard</span>
             </a>
             <div class="border-t border-glass-border my-2"></div>
-            <a href="Backend/logout.php" class="flex items-center gap-3 px-4 py-2 text-sm text-pistachio hover:bg-dark-green transition">
+            <a href="/Backend/logout.php" class="flex items-center gap-3 px-4 py-2 text-sm text-pistachio hover:bg-dark-green transition">
               <span class="material-symbols-outlined">logout</span>
               <span>Logout</span>
             </a>
@@ -191,8 +191,8 @@ require_once __DIR__ . '/api/config.php';
       <?php else : ?>
         <!-- Login/Sign Up Buttons -->
         <div class="hidden md:flex items-center gap-3">
-          <a href="Frontend/auth/login.php" class="px-5 py-2 rounded-full border border-glass-border glass-card text-text-primary text-sm font-semibold uppercase hover:text-text-primary transition">Login</a>
-          <a href="Frontend/auth/register.php" class="px-5 py-2 rounded-full glow-button text-sm font-semibold uppercase shadow-lg hover:scale-105 transition">Sign Up</a>
+          <a href="/Frontend/auth/login.php" class="px-5 py-2 rounded-full border border-glass-border glass-card text-text-primary text-sm font-semibold uppercase hover:text-text-primary transition">Login</a>
+          <a href="/Frontend/auth/register.php" class="px-5 py-2 rounded-full glow-button text-sm font-semibold uppercase shadow-lg hover:scale-105 transition">Sign Up</a>
         </div>
       <?php endif; ?>
 
@@ -215,8 +215,8 @@ require_once __DIR__ . '/api/config.php';
     <a href="#membership" class="nav-link py-3 px-4 text-text-primary border-b border-glass-border hover:bg-dark-green transition rounded-md">Plans</a>
     <a href="#booking" class="nav-link py-3 px-4 text-text-primary border-b border-glass-border hover:bg-dark-green transition rounded-md">Booking</a>
     <a href="#contact" class="nav-link py-3 px-4 text-text-primary border-b border-glass-border hover:bg-dark-green transition rounded-md">Contact</a>
-    <a href="Frontend/auth/login.php" class="nav-link py-3 px-4 text-text-primary border-b border-glass-border hover:bg-dark-green transition rounded-md">Login</a>
-    <a href="Frontend/auth/register.php" class="nav-link py-3 px-4 text-text-primary border-b border-glass-border hover:bg-dark-green transition rounded-md">Sign Up</a>
+    <a href="/Frontend/auth/login.php" class="nav-link py-3 px-4 text-text-primary border-b border-glass-border hover:bg-dark-green transition rounded-md">Login</a>
+    <a href="/Frontend/auth/register.php" class="nav-link py-3 px-4 text-text-primary border-b border-glass-border hover:bg-dark-green transition rounded-md">Sign Up</a>
   </nav>
   </header>
 
@@ -1075,7 +1075,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 unset($_SESSION['booking_error']);
             }
         ?>
-        <form class="space-y-6" id="booking-form-element" action="Backend/booking-handler.php" method="POST" novalidate>
+        <form class="space-y-6" id="booking-form-element" action="/Backend/booking-handler.php" method="POST" novalidate>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div class="relative">
               <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
@@ -1175,7 +1175,7 @@ document.addEventListener('DOMContentLoaded', function () {
                   unset($_SESSION['contact_error']);
               }
           ?>
-          <form class="space-y-6" action="Backend/contact-handler.php" method="POST">
+          <form class="space-y-6" action="/Backend/contact-handler.php" method="POST">
             <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-caribbean-green">person</span>

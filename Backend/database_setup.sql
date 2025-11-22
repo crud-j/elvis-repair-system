@@ -4,8 +4,8 @@
 -- Just paste entire script into phpMyAdmin → SQL → Go
 -- ================================================
 
-CREATE DATABASE IF NOT EXISTS elvis_repair_db DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE elvis_repair_db;
+CREATE DATABASE IF NOT EXISTS avnadmin DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE avnadmin;
 
 -- ================================================
 -- 1. USERS TABLE
