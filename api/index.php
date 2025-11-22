@@ -2,16 +2,17 @@
 // api/index.php
 
 // Set header to return JSON (standard for APIs)
-header('Content-Type: application/json');
-
 if (!headers_sent()) {
     header('Content-Type: text/html; charset=utf-8');
 }
 
+// Forward everything to your real root index.php
+require __DIR__ . '/../index.php';
+
 // Include the database configuration from the parent directory
 // We use __DIR__ . '/config.php' because config.php is in the same folder
 require __DIR__ . '/config.php';
-require __DIR__ . '/../index.php';
+
 
 $response = [];
 

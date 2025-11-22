@@ -1,23 +1,21 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "api/**/*.php",
-      "use": "vercel-php@0.7.4"
-    },
-    {
-      "src": "assets/**",
-      "use": "@vercel/static"
-    }
-  ],
   "functions": {
-    "api/**/*.php": {
-      "runtime": "vercel-php@0.7.4"
-    }
+    "api/index.php": { "runtime": "vercel-php@0.7.4" },
+    "api/**/*.php": { "runtime": "vercel-php@0.7.4" }
   },
   "routes": [
-    { "handle": "filesystem" },
-    { "src": "/(.*)\\.php", "dest": "/api/$1.php" },
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/img/(.*)", "dest": "/img/$1" },
+    { "src": "/uploads/(.*)", "dest": "/uploads/$1" },
+    { "src": "/script/(.*)", "dest": "/script/$1" },
+    { "src": "/Frontend/(.*)", "dest": "/Frontend/$1" },
+    { "src": "/Backend/(.*)", "dest": "/Backend/$1" },
+    { "src": "/admindash-frontend/(.*)", "dest": "/admindash-frontend/$1" },
+    { "src": "/customerdash-frontend/(.*)", "dest": "/customerdash-frontend/$1" },
+    { "src": "/admindash-backend/(.*)", "dest": "/admindash-backend/$1" },
+    { "src": "/customerdash-backend/(.*)", "dest": "/customerdash-backend/$1" },
+    { "src": "/(login|register|forgot_password|reset_password|verify)\\.php", "dest": "/$1.php" },
+    { "src": "/api/(.*)", "dest": "/api/$1" },
     { "src": "/(.*)", "dest": "/api/index.php" }
   ]
 }
