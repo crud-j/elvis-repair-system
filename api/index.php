@@ -1,5 +1,5 @@
 <?php
-// api/index.php — Clean Vercel entry point.
-
-// Forward everything to the real root index.php (your beautiful homepage)
+if (!headers_sent()) {
+    header('Content-Type: text/html; charset=utf-8');
+}
 require __DIR__ . '/../index.php';

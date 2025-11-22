@@ -1,30 +1,20 @@
 {
   "functions": {
-    "api/**/*.php": {
-      "runtime": "vercel-php@0.7.4"
-    }
+    "api/index.php": { "runtime": "vercel-php@0.7.4" },
+    "api/**/*.php": { "runtime": "vercel-php@0.7.4" }
   },
   "routes": [
-    {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
-    },
-    {
-      "src": "/uploads/(.*)",
-      "dest": "/uploads/$1"
-    },
-    {
-      "src": "/Frontend/(.*)",
-      "dest": "/Frontend/$1"
-    },
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "/(.*\\.php)",
-      "dest": "/api/index.php?page=$1"
-    }
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/uploads/(.*)", "dest": "/uploads/$1" },
+    { "src": "/img/(.*)", "dest": "/img/$1" },
+    { "src": "/Frontend/auth/(.*)", "dest": "/Frontend/auth/$1" },
+    { "src": "/Frontend/admindash-frontend/(.*)", "dest": "/Frontend/admindash-frontend/$1" },
+    { "src": "/Frontend/customerdash-frontend/(.*)", "dest": "/Frontend/customerdash-frontend/$1" },
+    { "src": "/Backend/(.*)", "dest": "/Backend/$1" },
+    { "src": "/Backend/admindash-backend/(.*)", "dest": "/Backend/admindash-backend/$1" },
+    { "src": "/Backend/customerdash-backend/(.*)", "dest": "/Backend/customerdash-backend/$1" },
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/(.*)", "dest": "/api/index.php" }
   ],
   "env": {
     "APP_ENV": "production",
