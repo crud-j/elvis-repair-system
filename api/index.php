@@ -1,12 +1,11 @@
 <?php
-// api/index.php
+// api/index.php — Clean Vercel entry point (NO JSON, NO DEBUG)
 
-// Set header to return JSON (standard for APIs)
 if (!headers_sent()) {
     header('Content-Type: text/html; charset=utf-8');
 }
 
-// Forward everything to your real root index.php
+// Forward everything to the real root index.php (your beautiful homepage)
 require __DIR__ . '/../index.php';
 
 // Include the database configuration from the parent directory

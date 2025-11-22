@@ -16,7 +16,9 @@
     { "src": "/admindash-backend/(.*)", "dest": "/admindash-backend/$1" },
     { "src": "/customerdash-backend/(.*)", "dest": "/customerdash-backend/$1" },
 
-    { "src": "/(login|register|forgot_password|reset_password|verify|api\\.php)\\.php$", "dest": "/$1.php" },
+    { "src": "/(login|register|forgot_password|reset_password|verify)\\.php", "dest": "/Frontend/auth/$1.php" },
+    { "src": "/admindashboard\\.php", "dest": "/Frontend/admindash-frontend/admindashboard.php" },
+    { "src": "/customerdashboard\\.php", "dest": "/Frontend/customerdash-frontend/customerdashboard.php" },
 
     { "src": "/api/(.*)", "dest": "/api/$1" },
 
